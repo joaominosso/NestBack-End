@@ -17,9 +17,11 @@ export class EventsServices {
     }
     async createEvent(event: Event) {
         this.eventModel.create(event);
+        return("Evento Criado");
     }
     async updateEvent(event: Event): Promise<[Event[], number]> {
-        return this.eventModel.update(event, { where: { id: event.id } })
+        this.eventModel.update(event, { where: { id: event.id } });
+        return (this.eventModel.findAll(), event.id)
     }
     async deleteOne(id: number) {
         const event = await this.getOne(id);

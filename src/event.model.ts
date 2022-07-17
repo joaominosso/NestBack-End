@@ -3,7 +3,7 @@ import { Column, DataType, Model, Table } from "sequelize-typescript";
 @Table
 export class Event extends Model<Event> {    
     @Column({
-        type: DataType.DATE,
+        type: DataType.STRING(),
         allowNull: false
     })    
     eventDate: Date;
@@ -35,10 +35,9 @@ export class Event extends Model<Event> {
         type: DataType.DECIMAL,
         allowNull: false
     })
-    phone: number;
-    
+    phone: number;    
     @Column({
-        type: DataType.DECIMAL(10, 2),
+        type: DataType.STRING(),
         allowNull: false
     })
     email: string;
