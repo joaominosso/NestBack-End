@@ -1,6 +1,5 @@
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
-import { UsersModule } from './user/user.module';
+import { UsersController } from './users/users.controller';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
@@ -9,11 +8,13 @@ import { AppService } from './app.service';
 import { Event } from './events/event.model';
 import { EventController } from './events/eventController';
 import { EventsServices } from './events/events.services';
-import { User } from './user/user.model';
+import { User } from './users/users.model';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    UsersModule,
     ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -28,7 +29,7 @@ import { User } from './user/user.model';
     SequelizeModule.forFeature([Event]),
     SequelizeModule.forFeature([User]),
   ],
-  controllers: [UserController, AppController, EventController],
-  providers: [UserService, AppService, EventsServices],
+  controllers: [UsersController, AppController, EventController, AuthController],
+  providers: [AppService, EventsServices,AuthService],
 })
 export class AppModule {}
